@@ -13,20 +13,10 @@
 
 ## Task accounting
 
-196 tasks are evaluated and included here. Four are scored 0 and have no directory:
-`facebook__zstd` and `madler__pigz` never produced a submission, and `esubaalew__run` and
-`unhappychoice__gittype` ended on repeated provider errors with no usable work.
-
-Only provider/infrastructure failures were retried manually. Rollouts where the model stopped
-without making a tool call (`RepeatedFormatError`, 12 tasks) or the provider rejected a request
-(`BadRequestError`, 21 tasks) received only mini-SWE-agent's built-in retries. However a rollout
-ended, its final workspace was evaluated. Each task ships the trajectory and solution of the
-attempt that was scored.
-
-`filosottile__age`: the standard evaluator fails on this task when a submission leaves Go or C
-sources in the workspace, because the hidden test branches build reference tools in place. It
-was re-evaluated with a fix that removes the submission's Go/C sources after compilation and
-before the test branches run; the compiled executable is unchanged.
+196 tasks are evaluated and included here; the other four produced no usable submission and
+score 0. Only provider/infrastructure failures were retried manually; other failures received
+only mini-SWE-agent's built-in retries. However a rollout ended, its final workspace was
+evaluated, and each task ships the trajectory and solution of the attempt that was scored.
 
 ## Extra stats
 
