@@ -6,7 +6,7 @@
 - **Protocol:** no-internet + `task_cleanroom_v6` images. The agent sees only the compiled binary
   (source removed, `.git` reset), reimplements it from scratch by interacting with it, and never
   has network access (`--network none` at the container level).
-- **Score:** ~0.821 (mean per-instance test pass-rate over the fixed 200, missing = 0; the
+- **Score:** ~0.825 (mean per-instance test pass-rate over the fixed 200, missing = 0; the
   leaderboard recomputes authoritatively from `_stats/score.json`). Only tests listed in the
   benchmark's `tests.json` are scored.
 - **Inference dates:** 2026-10-07 to 2026-10-09
@@ -23,8 +23,10 @@ without making a tool call (`RepeatedFormatError`, 12 tasks) or the provider rej
 ended, its final workspace was evaluated. Each task ships the trajectory and solution of the
 attempt that was scored.
 
-`filosottile__age` scores 0 because of an evaluator failure: two test branches failed with
-`results_read_failed`, leaving all tests not run.
+`filosottile__age`: the standard evaluator fails on this task when a submission leaves Go or C
+sources in the workspace, because the hidden test branches build reference tools in place. It
+was re-evaluated with a fix that removes the submission's Go/C sources after compilation and
+before the test branches run; the compiled executable is unchanged.
 
 ## Extra stats
 
