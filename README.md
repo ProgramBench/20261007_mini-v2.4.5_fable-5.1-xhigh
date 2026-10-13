@@ -23,6 +23,9 @@ without making a tool call (`RepeatedFormatError`, 12 tasks) or the provider rej
 ended, its final workspace was evaluated. Each task ships the trajectory and solution of the
 attempt that was scored.
 
+`filosottile__age` scores 0 because of an evaluator failure: two test branches failed with
+`results_read_failed`, leaving all tests not run.
+
 ## Extra stats
 
 Cost, model-call, and output-token statistics are generated from the published trajectories by
